@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
 namespace GissaHemligaTalet
-{                                                                           
-    public enum Outcome { Indefinite,Low,High,Correct,NoMoreGuesses,PreviousGuesses};
+  {                                                                           
+  public enum Outcome { Indefinite,Low,High,Correct,NoMoreGuesses,PreviousGuesses};
 
     public class SecretNumber
     {
@@ -28,9 +29,9 @@ namespace GissaHemligaTalet
                 return _previousGuesses.Count();
             }
         }
-        public int Number
+        public int? Number
         {
-            get
+                 get
             {
                 if (CanMakeGuess)
                 {
@@ -80,6 +81,7 @@ namespace GissaHemligaTalet
             {
                 return Outcome = Outcome.PreviousGuesses;
             }
+        
             _previousGuesses.Add(guess);
 
             if (guess < _number)
@@ -101,15 +103,14 @@ namespace GissaHemligaTalet
         public SecretNumber() 
         { 
             _previousGuesses =new List<int>(MaxNumberOfGuesses);
+            Initalize();
         }
 
-
-
-
+        
 
 
 
 
 
     }
-}
+}    
