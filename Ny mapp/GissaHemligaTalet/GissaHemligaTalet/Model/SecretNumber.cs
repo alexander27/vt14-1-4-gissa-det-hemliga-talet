@@ -54,7 +54,7 @@ namespace GissaHemligaTalet
         public void Initalize()
         {
             Random Random = new Random();
-            _number = Random.Next(1, 100);
+            _number = Random.Next(1, 101);
 
             _previousGuesses.Clear();
 
@@ -62,18 +62,14 @@ namespace GissaHemligaTalet
         }
         public Outcome MakeGuess(int guess)
         {
-            
-            if (guess < 1 || guess > 100)
-            
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            
-            
-            if (Count == MaxNumberOfGuesses)
- 
+            if (!CanMakeGuess)
             {
                 return Outcome = Outcome.NoMoreGuesses;
+            }
+
+            if (guess < 1 || guess > 100)
+            {
+                throw new ArgumentOutOfRangeException();
             }
 
 
@@ -93,7 +89,6 @@ namespace GissaHemligaTalet
             {
                 return Outcome = Outcome.High;
             }
-
             else 
             {
                 return Outcome = Outcome.Correct;
